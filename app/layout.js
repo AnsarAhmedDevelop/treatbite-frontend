@@ -24,16 +24,16 @@ export const metadata = {
     title: "Gift the Joy of Dining – Restaurant Gift Vouchers Made Easy",
     description:
       "Send personalized restaurant gift vouchers in minutes. Perfect for birthdays, anniversaries, weddings, or any celebration. Secure, fast, and hassle-free.",
-    // url: "https://yourwebsite.com",
+    url: "https://treatbite.vercel.app",
     siteName: "Treatbite",
-    // images: [
-    //   {
-    //     url: "https://yourwebsite.com/images/social-preview.jpg",
-    //     width: 1200,
-    //     height: 630,
-    //     alt: "Restaurant Gift Vouchers",
-    //   },
-    // ],
+    images: [
+      {
+        url: "https://treatbite.vercel.app/images/social-preview.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Restaurant Gift Vouchers",
+      },
+    ],
     locale: "en_IN",
     type: "website",
   },
