@@ -81,7 +81,7 @@ function page() {
                     {showAll?.length > 0
                         ? showAll?.map((item, i) => (
 
-                            <div key={i} className="flex flex-col relative items-center justify-center  bg-white shadow rounded-lg">
+                            <div key={i} className="flex flex-col relative items-center justify-center  bg-white shadow-xl rounded-lg">
 
                                 <h2 className="text-center text-2xl font-bold mt-7">
                                     {item.fullName}
@@ -114,9 +114,9 @@ function page() {
                                         {item.isApproved ? "Account is Approved" : "Account is Not Approved"}
                                     </p>
                                 </div>
-                                <div className='grid grid-cols-3 gap-5 py-5'>
+                                <div className='grid grid-cols-3 gap-5 py-5 mx-2'>
                                     {item.restaurants.map((resto, i) =>
-                                        <div key={i} className='bg-gray-100 p-3'>
+                                        <div key={i} className='bg-gray-100 p-3 shadow-xl'>
                                             <h3 className='text-center font-semibold'>{resto.restaurantName}</h3>
                                             <p className='text-center'>{resto.restaurantAddress}</p>
                                             <p className={`text-center px-1 py-1 text-xs font-semibold ${resto.isPublished

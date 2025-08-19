@@ -112,7 +112,7 @@ const RestaurantVoucher = ({ id }) => {
                                     </div>
                                 </button>
                             ))
-                        ) : null
+                        ) : <h2>Dont have any Voucher yet. </h2>
                     ) : (
                         <button
                             className="cursor-pointer"

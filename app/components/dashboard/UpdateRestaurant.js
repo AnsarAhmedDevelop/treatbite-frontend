@@ -197,7 +197,7 @@ useEffect(() => {
                   e.preventDefault();
                   setOpen(false);
                 }}
-                className="py-2 px-4  bg-purple-500 hover:bg-purple-600 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none "
+                className="py-2 px-4 cursor-pointer bg-purple-500 hover:bg-purple-600 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none "
               >
                 Back
               </button>

@@ -43,7 +43,7 @@ function PartnerProfile({ setProfileModel, user }) {
       }
          
       const res = await updatePartnerProfile(accessToken,fd)
-     console.log(res.data,"updated data")
+    //  console.log(res.data,"updated data")
       toast.success(res.data.message || "Updated successfully");
       dispatch(updateUser(res.data.user));
 

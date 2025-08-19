@@ -1,5 +1,6 @@
 "use client"
 import { updateBankInfo } from '@/app/http/api';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 
@@ -12,6 +13,7 @@ function UpdateBankDetails({ setOpen, token,bankInfo}) {
               
             }
     )
+  const router= useRouter();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,6 +27,7 @@ function UpdateBankDetails({ setOpen, token,bankInfo}) {
            toast.success(res.data.message || "Bank detail Updated successfully")
            
             setOpen(false); // switch to view mode
+            router.push("/dashboard/bank")
         } catch (err) {
             console.error("Bank info update failed:", err);
             // You can show toast or error message here
