@@ -10,6 +10,7 @@ import toast from 'react-hot-toast'
 function RestaurantInfo({ id }) {
   const [showAll, setShowAll] = useState({})
   const [open, setOpen] = useState(false);
+   const [update, setUpdate] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const accessToken = useSelector((state) => state.user.accessToken);
   // console.log(id, "id..rest info")
@@ -28,7 +29,7 @@ function RestaurantInfo({ id }) {
       }
     }
     singleRestaurant()
-  }, [id, setOpen,showModal])
+  }, [id, open,showModal])
 
 
   const handlePublish = async () => {
@@ -48,7 +49,7 @@ function RestaurantInfo({ id }) {
   return (
     <>
       <div className='bg-white shadow rounded-lg p-5'>
-        {showAll.isCompleteInfo == true && open == false ? (
+        {showAll.isCompleteInfo == true && update == false ? (
           <div>
             <div className="flex sm:flex-row flex-col justify-between font-bold text-xl  border-b border-gray-100">
               <h2 className='sm:order-1 order-2 pt-5 sm:pt-0'>Restaurant Information</h2>
@@ -76,7 +77,7 @@ function RestaurantInfo({ id }) {
                 </Link> */}
                 <button
                   onClick={() =>
-                    setOpen(true)
+                   { setOpen(true),setUpdate(true)}
                   }
                   type="button"
                   className="cursor-pointer py-2 px-4 ml-2 bg-purple-500 hover:bg-purple-600 text-white transition ease-in duration-200 text-center text-sm font-semibold shadow-md focus:outline-none  "
@@ -286,7 +287,7 @@ function RestaurantInfo({ id }) {
 
           </div>
         ) : (
-          <UpdateRestaurant setOpen={setOpen} id={id} restoInfo={showAll} />
+          <UpdateRestaurant setOpen={setOpen} open={open} setUpdate={setUpdate} id={id} restoInfo={showAll} />
         )}
       </div>
       {showModal ? (

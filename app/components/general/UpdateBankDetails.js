@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 
-function UpdateBankDetails({ setOpen, token,bankInfo}) {
+function UpdateBankDetails({token, bankInfo, setIsOpen, isOpen, setUpdate}) {
     const [bankData, setBankData] = useState(
          {
               accountName: bankInfo.accountName || "",
@@ -25,8 +25,9 @@ function UpdateBankDetails({ setOpen, token,bankInfo}) {
             const res = await updateBankInfo(token, bankInfo._id,bankData); // ⬅️ API call
         //    console.log(res,"updated bank info")
            toast.success(res.data.message || "Bank detail Updated successfully")
-           
-            setOpen(false); // switch to view mode
+           setIsOpen(!isOpen)
+           setUpdate(false)
+         // switch to view mode
             router.push("/dashboard/bank")
         } catch (err) {
             console.error("Bank info update failed:", err);
@@ -34,15 +35,15 @@ function UpdateBankDetails({ setOpen, token,bankInfo}) {
         }
     };
     return (
-        <div className='w-11/12 xl:w-10/12 mx-auto mt-10 bg-white shadow rounded-lg'>
-            <div className="w-10/12 mx-auto  pt-10  ">
-                <div className="flex justify-between font-bold text-xl my-5 border-b border-gray-100">
-                    <h1>Bank Information</h1>
+        <div className='w-11/12 xl:w-10/12 mx-auto mt-5 bg-white shadow rounded-lg'>
+            <div className="w-10/12 mx-auto  pt-5  ">
+                <div className="flex justify-between font-bold text-xl my-5 pb-3 border-b border-gray-100">
+                    <h2>Update Bank Information</h2>
                     <div className="pb-1">
                         <button
                             type="button"
                             onClick={(e) =>
-                                setOpen(false)}
+                                setIsOpen(!isOpen)}
                             className="py-2 px-4  bg-purple-500 hover:bg-purple-600 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none "
                         >
                             Back
@@ -51,7 +52,7 @@ function UpdateBankDetails({ setOpen, token,bankInfo}) {
                 </div>
                 <div className=" overflow-y-auto  scroll-smooth">
                     <form onSubmit={handleSubmit}>                
-                        <div className="grid grid-cols-1 sm:grid-cols-2 py-5 gap-x-5">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 py-3 gap-x-5">
                             <div className="relative ">
                                 <label className=" font-semibold text-black ">
                                     Account Name
@@ -77,7 +78,7 @@ function UpdateBankDetails({ setOpen, token,bankInfo}) {
                                 />
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 sm:py-5 gap-x-5">
+                        <div className="grid grid-cols-2 sm:py-3 gap-x-5">
 
                             <div className="relative ">
                                 <label className="text-black font-semibold">

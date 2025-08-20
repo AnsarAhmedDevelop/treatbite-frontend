@@ -8,8 +8,11 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 
 function page() {
-  const [open, setOpen] = useState(false);
-  const [bankInfo, setBankInfo] = useState({});
+
+  const [bankInfo, setBankInfo] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [update, setUpdate] = useState(false);
+   
 
   const accessToken = useSelector((state) => state.user.accessToken);
   useEffect(() => {
@@ -26,23 +29,49 @@ function page() {
     }
     if (accessToken) getBankDetail();
 
-  }, [accessToken, setOpen])
+  }, [accessToken,isOpen])
 
 
 
   return (
     <div className='bg-gray-100 min-h-screen'>
        <Dashboardheader />
-      {!open && bankInfo.isBankInfo ? (
-        <div className="w-11/12 xl:w-10/12 mx-auto mt-10 bg-white shadow rounded-lg ">
-          <div className="w-11/12 sm:w-10/12 mx-auto pt-5 sm:pt-10">
-            <div className="flex sm:flex-row flex-col justify-between font-bold text-xl my-5 border-b border-gray-100">
+
+      {/* CASE 1: If no bank info yet → show form */}
+  
+    
+      {bankInfo?.isBankInfo ==false ? ( 
+      <UpdateBankDetails      
+          token={accessToken}
+          bankInfo={bankInfo}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          setUpdate={setUpdate}
+        />): null}
+
+      {update ? ( 
+      <UpdateBankDetails      
+          token={accessToken}
+          bankInfo={bankInfo}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          setUpdate={setUpdate}
+        />): null}
+
+
+
+
+     {/* CASE 2: If bank info exists → show details */}
+      {bankInfo?.isBankInfo && !update ? (
+        <div className="w-11/12 xl:w-10/12 mx-auto mt-5 bg-white shadow rounded-lg ">
+          <div className="w-11/12 sm:w-10/12 mx-auto pt-5 sm:pt-5">
+            <div className="flex sm:flex-row flex-col justify-between font-bold text-xl my-5  pb-3 border-b border-gray-100">
               <h2 className='sm:order-1 order-2 pt-5 sm:pt-0'>Bank Information</h2>
                   <div className="flex gap-x-5 order-1 sm:order-2">
                         <button
                             type="button"
                             onClick={(e) =>
-                                setOpen(true)}
+                               { setUpdate(true),setIsOpen(false)}}
                             className="py-2  px-2 flex items-center gap-x-2  cursor-pointer bg-purple-500 hover:bg-purple-600 text-white transition ease-in duration-200 text-center text-sm font-semibold shadow-md focus:outline-none  "
                         >
                                <SquarePen size={20} /> Edit Bank Detail
@@ -64,32 +93,32 @@ function page() {
                 <h3 className="text-base font-semibold text-black ">
                   Account Name
                 </h3>
-                <h5 className="text-lg">{bankInfo?.accountName}</h5>
+                <h5 className="text-lg text-gray-400">{bankInfo?.accountName}</h5>
               </div>
 
               <div className="my-2">
                 <h3 className="text-base font-semibold text-black ">
                   Account Number
                 </h3>
-                <h5 className="text-lg">{bankInfo?.accountNumber}</h5>
+                <h5 className="text-lg text-gray-400">{bankInfo?.accountNumber}</h5>
               </div>
               <div className="my-2">
                 <h3 className="text-base font-semibold text-black ">
                   IFSC Code
                 </h3>
-                <h5 className="text-lg">{bankInfo?.ifscCode}</h5>
+                <h5 className="text-lg text-gray-400">{bankInfo?.ifscCode}</h5>
               </div>
             </div>
           </div>
         </div>
-      ) : (
-        <UpdateBankDetails        
-          setOpen={setOpen}
-          open={open}          
-          token={accessToken}
-          bankInfo={bankInfo}
-        />
-      )}
+      ): null }
+
+
+
+
+    
+
+    
 
     </div>
   )

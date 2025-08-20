@@ -39,7 +39,7 @@ const features = [
   { value: "smookingArea", name: "Smooking Area" }
 ];
 
-function UpdateRestaurant({ setOpen, id, restoInfo }) {
+function UpdateRestaurant({ setOpen,open,setUpdate, id, restoInfo }) {
   const accessToken = useSelector((state) => state.user.accessToken);
   const [values, setValues] = useState({
   restaurantName: '',
@@ -147,8 +147,9 @@ useEffect(() => {
       const res = await updateRestaurant(accessToken, id, fd)
      
       toast.success(res.data.error || "Updated successfully");
-
-      setOpen(false);
+      setUpdate(false)
+      setOpen(!open);
+     
     } catch (err) {
       console.error(err);
       toast.error(

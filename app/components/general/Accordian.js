@@ -19,7 +19,7 @@ function Accordion({ title, content }) {
           <div className="px-3 flex justify-between">
             {" "}
             <span
-              className={` text-sm sm:text-lg font-[600] tracking-wide font-spectral italic`}
+              className={` text-sm sm:text-base font-[600] tracking-wide font-spectral italic`}
             >
               {title}
             </span>
@@ -44,7 +44,7 @@ function Accordion({ title, content }) {
             </span>{" "}
           </div>
         </div>
-        {isActive && <div className="p-2 text-sm sm:text-base  border-2">{content}</div>}
+        {isActive && <div className="p-2 text-sm sm:text-sm  border-2">{content}</div>}
       </div>
     </>
   );

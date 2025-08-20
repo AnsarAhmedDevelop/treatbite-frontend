@@ -13,11 +13,11 @@ import { useDispatch, useSelector } from 'react-redux';
 const accordionData = [
   {
     title: "How long is my card valid for?",
-    content: `The Best Restaurants Gift Card is valid for 6 months from date of purchase. This gives the recipient plenty of time to decide where and when to spend their gift card.`,
+    content: `The Treatbite Gift Card is valid for 30 days from date of purchase. This gives the recipient plenty of time to spend their gift card.`,
   },
   {
     title: "How does it work?",
-    content: `The recipient receives the gift card in their inbox a few moments after placing an order. Recipient can then download it. This Gift card bear a 8-digit unique coupon number along with a 6-digit pin. For redeeming a Gif recipient must share coupon number & pin with restaurant manager only`,
+    content: `The recipient receives the gift card  in their inbox with Restaurant name and address, Voucher amount, Message from the sender a few moments after placing an order. This Gift card bear a 6-digit unique coupon number along with a 4-digit pin. For redeeming a Gift recipient must share coupon number & pin with restaurant manager only`,
   },
   {
     title: "Who Accepts Gift Card?",
@@ -120,9 +120,8 @@ function page({ params }) {
                     </div>
                     <div className="px-2 flex flex-col scroll-smooth">
                       <h2 className="sm:text-lg pb-5">
-                        An e-gift card is sent straight to your email inbox.
-                        Include a personal message and select a custom value
-                        of your choice.
+                        An e-gift card is sent straight to your email inbox and Recipient email.
+                        Include a personal message, Restaurant name and address, Voucher amount, A 6-digit voucher code and 4-digit secret PIN.
                       </h2>
                       <div className="py-3 border-t border-gray-500">
                         <div className="grid grid-cols-2 items-center py-1">
@@ -214,11 +213,11 @@ function page({ params }) {
                         </div>
                       </form>
 
-                      <p className="sm:p-3 mb-1">
+                      {/* <p className="sm:p-3 mb-1">
                         When buying more than 1 card, you can edit the
                         information individually after adding them to your
                         cart.
-                      </p>
+                      </p> */}
                       <div className="accordion w-full">
                         {accordionData.map(({ title, content }) => (
                           <Accordion
